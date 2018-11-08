@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2018 at 05:43 AM
+-- Generation Time: Nov 08, 2018 at 09:15 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -283,13 +283,13 @@ ALTER TABLE `has`
 --
 ALTER TABLE `joins`
   ADD PRIMARY KEY (`user_id`,`rso_id`),
-  ADD KEY `rso_id` (`rso_id`);
+  ADD KEY `joins_rso` (`rso_id`);
 
 --
 -- Indexes for table `loc`
 --
 ALTER TABLE `loc`
-  ADD PRIMARY KEY (`name`);
+  ADD PRIMARY KEY (`latitude`,`longitude`);
 
 --
 -- Indexes for table `owns`
@@ -352,18 +352,12 @@ ALTER TABLE `superadmin`
 --
 ALTER TABLE `views`
   ADD PRIMARY KEY (`public_id`,`rso_id`,`private_id`),
-  ADD KEY `rso_id` (`rso_id`),
-  ADD KEY `private_id` (`private_id`);
+  ADD KEY `views_rso` (`rso_id`),
+  ADD KEY `views_private` (`private_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `event`
@@ -390,28 +384,10 @@ ALTER TABLE `publicevent`
   MODIFY `public_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `rso`
---
-ALTER TABLE `rso`
-  MODIFY `rso_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `rsoevent`
 --
 ALTER TABLE `rsoevent`
   MODIFY `rso_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student`
---
-ALTER TABLE `student`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `superadmin`
---
-ALTER TABLE `superadmin`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -421,47 +397,47 @@ ALTER TABLE `superadmin`
 -- Constraints for table `at`
 --
 ALTER TABLE `at`
-  ADD CONSTRAINT `at_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`);
+  ADD CONSTRAINT `at_event` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`);
 
 --
 -- Constraints for table `creates`
 --
 ALTER TABLE `creates`
-  ADD CONSTRAINT `creates_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `superadmin` (`user_id`);
+  ADD CONSTRAINT `creates_user` FOREIGN KEY (`user_id`) REFERENCES `superadmin` (`user_id`);
 
 --
 -- Constraints for table `has`
 --
 ALTER TABLE `has`
-  ADD CONSTRAINT `has_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
+  ADD CONSTRAINT `has_profile` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`);
 
 --
 -- Constraints for table `joins`
 --
 ALTER TABLE `joins`
-  ADD CONSTRAINT `joins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `student` (`user_id`),
-  ADD CONSTRAINT `joins_ibfk_2` FOREIGN KEY (`rso_id`) REFERENCES `rso` (`rso_id`);
+  ADD CONSTRAINT `joins_rso` FOREIGN KEY (`rso_id`) REFERENCES `rso` (`rso_id`),
+  ADD CONSTRAINT `joins_user` FOREIGN KEY (`user_id`) REFERENCES `student` (`user_id`);
 
 --
 -- Constraints for table `owns`
 --
 ALTER TABLE `owns`
-  ADD CONSTRAINT `owns_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `admin` (`user_id`);
+  ADD CONSTRAINT `owns_user` FOREIGN KEY (`user_id`) REFERENCES `admin` (`user_id`);
 
 --
 -- Constraints for table `request`
 --
 ALTER TABLE `request`
-  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `student` (`user_id`),
-  ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`rso_id`) REFERENCES `rso` (`rso_id`);
+  ADD CONSTRAINT `request_rso` FOREIGN KEY (`user_id`) REFERENCES `rso` (`rso_id`),
+  ADD CONSTRAINT `request_user` FOREIGN KEY (`user_id`) REFERENCES `student` (`user_id`);
 
 --
 -- Constraints for table `views`
 --
 ALTER TABLE `views`
-  ADD CONSTRAINT `views_ibfk_1` FOREIGN KEY (`public_id`) REFERENCES `publicevent` (`public_id`),
-  ADD CONSTRAINT `views_ibfk_2` FOREIGN KEY (`rso_id`) REFERENCES `rsoevent` (`rso_id`),
-  ADD CONSTRAINT `views_ibfk_3` FOREIGN KEY (`private_id`) REFERENCES `privateevent` (`private_id`);
+  ADD CONSTRAINT `views_private` FOREIGN KEY (`private_id`) REFERENCES `privateevent` (`private_id`),
+  ADD CONSTRAINT `views_public` FOREIGN KEY (`public_id`) REFERENCES `publicevent` (`public_id`),
+  ADD CONSTRAINT `views_rso` FOREIGN KEY (`rso_id`) REFERENCES `rsoevent` (`rso_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
