@@ -1,6 +1,37 @@
+<?php
+session_start();
+require('connect.php');
+if (isset($_POST['username']) and isset($_POST['password']))
+{
+	$username = mysqli_real_escape_string($connection, $_POST['username']);
+	$password = mysqli_real_escape_string($_POST['password']);
+	$query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
+ 
+	$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+	$count = mysqli_num_rows($result);
+	if ($count == 1)
+	{
+		$_SESSION['username'] = $username;
+	}
+	else
+	{
+		$fmsg = "Invalid Login Credentials.";
+	}
+}
+?>
+
 <html>
 <head>
   <title>Login Form</title>
+  <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
   <link rel = "stylesheet" type = "text/css" href = "style.css">
   <body>
       <div class="loginbox">
@@ -22,7 +53,10 @@
                 <input type="text" placeholder="Username" name="username" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Password" name="psw" required>
+                <input type="password" id="passwordID" placeholder="Password" name="psw" required>
+				
+				<label for="cpsw"><b>Confirm Password</b></label>
+                <input type="password" placeholder="Password" name="cpsw" oninput="check(this);" required>
 
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Email" name="email" required>
@@ -40,6 +74,16 @@
 
       function closeForm(){
           document.getElementById("signupForm").style.display = "none";
+      }
+      function check(input){
+          if (input.value != document.getElementId('passwordID').value)
+          {
+              input.setCustomValidity('Passwords must be match.');
+          }
+          else
+          {
+              input.setCustomValidity('');
+          }
       }
       </script>
   </body>
