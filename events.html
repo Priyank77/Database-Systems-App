@@ -2,6 +2,7 @@
   <head>
       <title>Events</title>
       <link rel="stylesheet" type="text/css" href="style.css">
+      <script src="controller.js"></script>
   </head>
   <body>
     <section>
@@ -28,7 +29,7 @@
             </form>
           </div>
           <div class="col-4" style="float: right; width: 125px; padding-left: 0; bottom: 4px;">
-            <button id="btnSearch" type="button" onclick="searchContact();"  data-inline="true">Search</button>
+            <button id="btnSearch" type="button" onclick="searchEvent();"  data-inline="true">Search</button>
           </div>
         </div>
 
@@ -58,28 +59,28 @@
              <h1>Add Event Here</h1>
 
              <label for="eventName"><b>Name</b></label>
-             <input class = "eventInputs" type="text" placeholder="Event Name" name="eventname" required>
+             <input id = "eventName" class = "eventInputs" type="text" placeholder="Event Name" name="eventName" method = "POST" required>
 
              <label for="eventCategory"><b>Category</b></label>
-             <input class = "eventInputs" type="text" placeholder="Event Category" name="eventcategory" required>
+             <input id = "eventCategory" class = "eventInputs" type="text" placeholder="Event Category" name="eventcategory" method = "POST" required><br />
 
              <label for="desc"><b>Description</b></label>
-             <input class = "eventInputs" type="text" placeholder="Description" name="description" required>
+             <input id = "desc" class = "eventInputs" type="text" placeholder="Description" name="description" method = "POST" required><br />
 
              <label for="time"><b>Time</b></label>
-             <input class = "eventInputs" type="time" placeholder="Event Time" name="eventtime" required>
+             <input id = "time" class = "eventInputs" type="time" placeholder="Event Time" name="eventtime" method = "POST" required><br />
 
              <label for="date"><b>Date</b></label>
-             <input class = "eventInputs" type="date" placeholder="Event Date" name="eventdate" required>
+             <input id = "date" class = "eventInputs" type="date" placeholder="Event Date" name="eventdate" method = "POST" required><br />
 
              <label for="loc"><b>Location</b></label>
-             <input class = "eventInputs" type="text" placeholder="Location" name="eventloc" required>
+             <input id = "loc" class = "eventInputs" type="text" placeholder="Location" name="eventloc" method = "POST" required><br />
 
              <label for="contactPhone"><b>Phone</b></label>
-             <input class = "eventInputs" type="tel" placeholder="Phone Number" name="phonenum" required>
+             <input id = "contactPhone" class = "eventInputs" type="tel" placeholder="Phone Number" name="phonenum" method = "POST" required><br />
 
              <label for="contactEmail"><b>Email</b></label>
-             <input class = "eventInputs" type="email" placeholder="Email" name="email" required>
+             <input id = "contactEmail" class = "eventInputs" type="email" placeholder="Email" name="email" method = "POST" required><br />
 
              <input type="button" class="btn" onclick="closeEventForm()" value="Create Event"></input>
              <input class = "eventInputs" type="button" value="Close Form" class="btn" onclick="closeEventForm()"></input>
