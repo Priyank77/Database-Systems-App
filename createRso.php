@@ -12,12 +12,11 @@
       echo "Not connected";
   }
 
-  $name = $_POST["eventName"];
-  $category = $_POST["eventCategory"];
-  $desc = $_POST["descr"];
+  $name = $_POST["rsoName"];
+  $admin = $_POST["admin"];
+  $email = $_POST["mail"];
 
-  $sql = "INSERT into rso (name, category, description)
-  VALUES ('$name', '$category', '$desc')";
+  $sql = "INSERT into rso (name, admin, email) VALUES ('$name', '$admin', '$email')";
 
   if(!mysqli_query($conn, $sql))
   {
@@ -26,7 +25,7 @@
   else
   {
     echo "Inserted successfully";
-    header("refresh:2; url=eventss.php"); 
+    header("refresh:2; url=rso.php");
   }
 
  ?>
