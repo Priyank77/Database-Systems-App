@@ -26,8 +26,9 @@ else{
 $user = $_POST["username"];
 $pass = $_POST["psw"];
 $email = $_POST["email"];
+$level = $_POST["level"];
 
-$sql = "INSERT into users (username, password, email) VALUES ('$user', '$pass', '$email')";
+$sql = "INSERT into users (username, password, email, level) VALUES ('$user', '$pass', '$email', '$level')";
 
 if(!mysqli_query($conn, $sql))
 {

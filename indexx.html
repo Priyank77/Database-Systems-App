@@ -18,7 +18,22 @@
               </br>
     Email: <input type=text name="email">
            </br>
-           <input type="submit" value="Signup">
+    Student, Admin, or Superadmin?: <input type="text" name="level" id="level">
+          </br>
+          <input type="submit" onclick="checkLevel()" value="Signup">
+
+    <script>
+      function checkLevel()
+      {
+          var level = document.getElementById("level").value;
+
+          if(level != "Student" && level != "student" && level != "Admin" && level != "admin" && level != "Superadmin" && level != "superadmin")
+          {
+              alert("Please type in the proper response.")
+              return;
+          }
+      }
+    </script>
   </form>
 </body>
 </html>

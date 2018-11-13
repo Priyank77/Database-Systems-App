@@ -15,6 +15,9 @@ $result = mysqli_query($conn, $sql);
   <head>
     <title>Events</title>
   </head>
+  <body>
+    <input type="reset" value="Sign Out" onclick="location.href='indexx.html'">
+    <br></br>
 
   <table callspacing="100">
       <thead>
@@ -28,6 +31,8 @@ $result = mysqli_query($conn, $sql);
             <th>Location</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Rso</th>
+            <th>University</th>
         </tr>
         <?php while($row = mysqli_fetch_array($result)):;?>
         <tr>
@@ -40,6 +45,8 @@ $result = mysqli_query($conn, $sql);
               <td><?php echo $row[6];?></td>
               <td><?php echo $row[7];?></td>
               <td><?php echo $row[8];?></td>
+              <td><?php echo $row[9];?></td>
+              <td><?php echo $row[10];?></td>
               <?php echo "<td><a href=view.php?id=".$row['ID'].">View</a></td>"?>;
         </tr>
       <?php endwhile;?>

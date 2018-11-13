@@ -19,6 +19,9 @@ $result = mysqli_query($conn, $sql);
       <input type="reset" value="Sign Out" onclick="location.href='indexx.html'">
       <br></br>
 
+      <input type="submit" value="Back to Events" onclick="location.href='eventss.php'">
+      <br></br>
+
       <form action="createRso.php" method="post">
         RSO Name: <input type="text" name="rsoName">
                     <br></br>

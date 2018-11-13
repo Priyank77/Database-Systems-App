@@ -11,6 +11,9 @@ $result = mysqli_query($conn, $sql);
 
 $sql_u = "SELECT name FROM universities";
 $result_u = mysqli_query($conn, $sql_u);
+
+$sql_r = "SELECT name FROM rso";
+$result_r = mysqli_query($conn, $sql_r);
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +24,8 @@ $result_u = mysqli_query($conn, $sql_u);
   <body>
       <input type="reset" value="Sign Out" onclick="location.href='indexx.html'">
       <br></br>
+
+      <input type="submit" value="Create RSO" onclick="location.href='rso.php'">
 
       <form action="createEvent.php" method="post">
         Event Name: <input type="text" name="eventName">
@@ -39,6 +44,12 @@ $result_u = mysqli_query($conn, $sql_u);
                     <br></br>
         Contact Email: <input type="email" name="mail">
                     <br></br>
+        RSO: <select value="rsos" name="rrssoo">
+          <?php while($row_r  =mysqli_fetch_array($result_r)):;?>
+            <option value="<?php echo $row_r[0];?>"><?php echo $row_r['name'];?></option>
+          <?php endwhile;?>
+          </select>
+          <br></br>
         University: <select value="University" name="uni">
         <?php while($row_u = mysqli_fetch_array($result_u)):;?>
           <option value="<?php echo $row_u[0];?>"><?php echo $row_u['name'];?></option>
@@ -59,6 +70,7 @@ $result_u = mysqli_query($conn, $sql_u);
                 <th>Location</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Rso</th>
                 <th>University</th>
             </tr>
             <?php while($row = mysqli_fetch_array($result)):;?>
@@ -73,6 +85,7 @@ $result_u = mysqli_query($conn, $sql_u);
                   <td><?php echo $row[7];?></td>
                   <td><?php echo $row[8];?></td>
                   <td><?php echo $row[9];?></td>
+                  <td><?php echo $row[10];?></td>
                   <?php echo "<td><a href=delete.php?id=".$row['ID'].">Delete</a></td>"?>;
             </tr>
           <?php endwhile;?>

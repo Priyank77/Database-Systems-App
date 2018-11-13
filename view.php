@@ -38,6 +38,10 @@
           echo "<label>Contact Phone: " .$row['phone']. "</label>";
           echo "<br></br>";
           echo "<label>Contact Email: " .$row['email']. "</label>";
+          echo "<br></br>";
+          echo "<label>Rso: " .$row['rso']. "</label>";
+          echo "<br></br>";
+          echo "<label>University: " .$row["university"]. "</label>";
       }
 
      ?>
