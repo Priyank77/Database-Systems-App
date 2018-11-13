@@ -8,6 +8,9 @@ $db = "cop4710";
 $conn = mysqli_connect($servername, $username, $password, $db);
 $sql = "SELECT * FROM events";
 $result = mysqli_query($conn, $sql);
+
+$sql_u = "SELECT name FROM universities";
+$result_u = mysqli_query($conn, $sql_u);
 ?>
 
 <!DOCTYPE html>
@@ -36,12 +39,18 @@ $result = mysqli_query($conn, $sql);
                     <br></br>
         Contact Email: <input type="email" name="mail">
                     <br></br>
+        University: <select value="University" name="uni">
+        <?php while($row_u = mysqli_fetch_array($result_u)):;?>
+          <option value="<?php echo $row_u[0];?>"><?php echo $row_u['name'];?></option>
+        <?php endwhile;?>
+      </select>
               <input type="submit" value="Create Event">
       </form>
 
-      <table>
+      <table callspacing="100">
           <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Category</th>
                 <th>Description</th>
@@ -50,9 +59,11 @@ $result = mysqli_query($conn, $sql);
                 <th>Location</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>University</th>
             </tr>
             <?php while($row = mysqli_fetch_array($result)):;?>
             <tr>
+                  <td><?php echo $row[0];?></td>
                   <td><?php echo $row[1];?></td>
                   <td><?php echo $row[2];?></td>
                   <td><?php echo $row[3];?></td>
@@ -61,6 +72,8 @@ $result = mysqli_query($conn, $sql);
                   <td><?php echo $row[6];?></td>
                   <td><?php echo $row[7];?></td>
                   <td><?php echo $row[8];?></td>
+                  <td><?php echo $row[9];?></td>
+                  <?php echo "<td><a href=delete.php?id=".$row['ID'].">Delete</a></td>"?>;
             </tr>
           <?php endwhile;?>
         </thead>

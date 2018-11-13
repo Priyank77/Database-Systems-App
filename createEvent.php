@@ -20,9 +20,10 @@
   $loc = $_POST["loc"];
   $phone = $_POST["phone"];
   $email = $_POST["mail"];
+  $uni = $_POST["uni"];
 
-  $sql = "INSERT into events (name, category, description, EventTime, EventDate, location, phone, email)
-  VALUES ('$name', '$category', '$desc', '$time', '$date', '$loc', '$phone', '$email')";
+  $sql = "INSERT into events (name, category, description, EventTime, EventDate, location, phone, email, university)
+  VALUES ('$name', '$category', '$desc', '$time', '$date', '$loc', '$phone', '$email', '$uni')";
 
   if(!mysqli_query($conn, $sql))
   {
@@ -31,7 +32,7 @@
   else
   {
     echo "Inserted successfully";
-    header("refresh:2; url=eventss.php"); 
+    header("refresh:2; url=eventss.php");
   }
 
  ?>
