@@ -18,7 +18,21 @@ if($result->num_rows == 0)
 }
 else
 {
-    header("refresh:1;url=events.html");
+    while($fieldinfo = mysqli_fetch_array($result))
+    {
+      if($fieldinfo['level'] == "Admin")
+      {
+        header("refresh:1;url=eventss.php");
+      }
+      else if($fieldinfo['level'] == "Student")
+      {
+          header("refresh:1;url=students.php");
+      }
+      else if($fieldinfo['level'] == "Superadmin")
+      {
+          header("refresh:1;url=superadmin.php");
+      }
+    }
 }
 
  ?>
