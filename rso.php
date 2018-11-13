@@ -46,7 +46,8 @@ $result = mysqli_query($conn, $sql);
                   <td><?php echo $row[0];?></td>
                   <td><?php echo $row[1];?></td>
                   <td><?php echo $row[2];?></td>
-                  <?php echo "<td><a href=deleterso.php?id=".$row['ID'].">Delete</a></td>"?>;
+				  <td><?php echo $row[3];?></td>
+                  <?php echo "<td><a href=deleterso.php?id=".$row['rso_id'].">Delete</a></td>"?>;
             </tr>
           <?php endwhile;?>
         </thead>
