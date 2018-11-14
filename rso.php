@@ -56,7 +56,7 @@ $result_u = mysqli_query($conn, $sql_u);
                   <td><?php echo $row[1];?></td>
                   <td><?php echo $row[2];?></td>
 				  <td><?php echo $row[3];?></td>
-                  <?php echo "<td><a href=deleterso.php?id=".$row['rso_id'].">Delete</a></td>"?>;
+                  <?php echo "<td><a href=deleterso.php?id=".$row['id'].">Delete</a></td>"?>;
             </tr>
           <?php endwhile;?>
         </thead>
