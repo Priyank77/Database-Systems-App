@@ -7,7 +7,9 @@ $db = "cop4710";
 
 $conn = mysqli_connect($servername, $username, $password, $db);
 $sql = "SELECT * FROM rso";
+$sql_u = "SELECT * FROM student_rso";
 $result = mysqli_query($conn, $sql);
+$result_u = mysqli_query($conn, $sql_u);
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +29,17 @@ $result = mysqli_query($conn, $sql);
                     <br></br>
         RSO Admin: <input type="text" name="admin">
                     <br></br>
-        RSO Email: <input type="email" name="mail">
+        RSO Admin Email: <input type="email" name="mail">
+                    <br></br>
+        RSO Email 2: <input type="email" name="mail2">
+                    <br></br>
+        RSO Email 3: <input type="email" name="mail3">
+                    <br></br>
+        RSO Email 4: <input type="email" name="mail4">
+                    <br></br>
+        RSO Email 5: <input type="email" name="mail5">
                     <br></br>
               <input type="submit" value="Create RSO">
-        RSO Student Emails: <input type="email" name="studmail"
       </form>
 
       <table callspacing="100">
