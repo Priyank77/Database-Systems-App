@@ -20,10 +20,9 @@
   $email4 = $_POST["mail4"];
   $email5 = $_POST["mail5"];
 
-  $sql = "INSERT into rso (name, admin, email) VALUES ('$name', '$admin', '$email')";
-  $sql_u = "INSERT into student_rso (email2, email3, email4, email5) VALUES ('$email2', '$email3', '$email4', '$email5')";
-
-  if(!mysqli_query($conn, $sql) && !mysqli_query($conn, $sql_u))
+  $sql = "INSERT into rso (name, admin, email, email2, email3, email4, email5) VALUES ('$name', '$admin', '$email', '$email2', '$email3', '$email4', '$email5')";
+  
+  if(!mysqli_query($conn, $sql))
   {
       echo "Not inserted";
   }

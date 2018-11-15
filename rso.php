@@ -7,9 +7,7 @@ $db = "cop4710";
 
 $conn = mysqli_connect($servername, $username, $password, $db);
 $sql = "SELECT * FROM rso";
-$sql_u = "SELECT * FROM student_rso";
 $result = mysqli_query($conn, $sql);
-$result_u = mysqli_query($conn, $sql_u);
 ?>
 
 <!DOCTYPE html>
@@ -48,17 +46,17 @@ $result_u = mysqli_query($conn, $sql_u);
                 <th>ID</th>
                 <th>Name</th>
                 <th>Admin</th>
-                <th>Email</th>
+                <th>Admin Email</th>
             </tr>
             <?php while($row = mysqli_fetch_array($result)):;?>
-            <tr>
-                  <td><?php echo $row[0];?></td>
-                  <td><?php echo $row[1];?></td>
-                  <td><?php echo $row[2];?></td>
+			<tr>
+				  <td><?php echo $row[0];?></td>
+				  <td><?php echo $row[1];?></td>
+				  <td><?php echo $row[2];?></td>
 				  <td><?php echo $row[3];?></td>
-                  <?php echo "<td><a href=deleterso.php?id=".$row['id'].">Delete</a></td>"?>;
-            </tr>
-          <?php endwhile;?>
+				  <?php echo "<td><a href=deleterso.php?id=".$row['id'].">Delete</a></td>"?>;
+			</tr>
+			<?php endwhile;?>
         </thead>
       </table>
 
