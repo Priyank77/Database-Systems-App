@@ -14,6 +14,9 @@ $result_u = mysqli_query($conn, $sql_u);
 
 $sql_r = "SELECT name FROM rso";
 $result_r = mysqli_query($conn, $sql_r);
+
+$sql_c = "SELECT * FROM comments";
+$result_c = mysqli_query($conn, $sql_c);
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +89,44 @@ $result_r = mysqli_query($conn, $sql_r);
                   <td><?php echo $row[8];?></td>
                   <td><?php echo $row[9];?></td>
                   <td><?php echo $row[10];?></td>
-                  <?php echo "<td><a href=delete.php?id=".$row['ID'].">Delete</a></td>"?>;
+                  <?php echo "<td><a href=delete.php?id=".$row['id'].">Delete</a></td>"?>;
+            </tr>
+          <?php endwhile;?>
+        </thead>
+      </table>
+	  
+	    <form action="createComment.php" method="post">
+            <br></br>
+			Name: <input type="text" name="commentName">
+				<br></br>
+			Email: <input type="email" name="commentEmail">
+				<br></br>
+			Comment: <textarea name="comment" class="form-control" rows="3"></textarea>
+				<br></br>
+				<input type="submit" value="Create Comment">
+			<br></br>
+		</form>
+		
+		<div class="panel panel-default">
+		<div class="panel-heading">Comments:</div>
+			<div class="panel-body"></div>
+		</div>
+		
+		<table callspacing="100">
+          <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Comment</th>
+                <th>Time</th>
+            </tr>
+            <?php while($row = mysqli_fetch_array($result_c)):;?>
+            <tr>
+                  <td><?php echo $row[1];?></td>
+                  <td><?php echo $row[2];?></td>
+                  <td><?php echo $row[3];?></td>
+                  <td><?php echo $row[4];?></td>
+                  <?php echo "<td><a href=deleteComment.php?id=".$row['id'].">Delete</a></td>"?>;
             </tr>
           <?php endwhile;?>
         </thead>
